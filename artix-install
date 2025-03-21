@@ -1,0 +1,22 @@
+#!/bin/bash
+
+INIT_SYS=""
+INIT_SYS_PACKAGES=""
+
+if [[ $(ps -p 1 -o comm=) == "runit" ]]; then
+    INIT_SYS="runit"
+elif [[ $(ps -p 1 -o comm=) == "openrc-init" ]]; then
+    INIT_SYS="openrc"
+elif [[ $(ps -p 1 -o comm=) == "s6-svscan" ]]; then
+    INIT_SYS="s6"
+else
+    echo "Unknow init system..."
+    exit 1
+fi
+
+INIT_SYS_PACKAGES="${INIT_SYS} elogind-${INIT_SYS}"
+basestrap /mnt ${INIT_SYS_PACKAGES} base base-devel linux linux-firmware vim fzf
+
+fstabgen -U /mnt >> /mnt/etc/fstab
+
+artix-chroot /mnt 
