@@ -22,7 +22,7 @@ basestrap /mnt ${INIT_SYS_PACKAGES} base base-devel linux linux-firmware vim fzf
 
 fstabgen -U /mnt >> /mnt/etc/fstab
 
-artix-chroot /mnt 
+artix-chroot /mnt /bin/bash <<EOF
 
 
 ## Creating a swap file
@@ -32,3 +32,5 @@ chmod 600 /swapfile
 mkswap /swapfile
 swapon /swapfile
 echo "/swapfile none swap defaults 0 0" >> /etc/fstab
+
+EOF
