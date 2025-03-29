@@ -5,6 +5,8 @@ INIT_SYS_PACKAGES=""
 MEM_SIZE_KB=$(grep MemTotal /proc/meminfo | awk '{print $2}')
 MEM_SIZE_MB=$((MEM_SIZE_KB / 1024))
 SWAP_BS_COUNT=$((MEM_SIZE_MB * 2))
+TIMEZONE=""
+LOCALE=""
 
 if [[ $(ps -p 1 -o comm=) == "runit" ]]; then
     INIT_SYS="runit"
@@ -24,13 +26,26 @@ fstabgen -U /mnt >> /mnt/etc/fstab
 
 artix-chroot /mnt /bin/bash <<EOF
 
+set -e
 
 ## Creating a swap file
-
 dd if=/dev/zero of=/swapfile bs=1M count=$SWAP_BS_COUNT
 chmod 600 /swapfile
 mkswap /swapfile
 swapon /swapfile
 echo "/swapfile none swap defaults 0 0" >> /etc/fstab
+
+## Selecting Timezone
+echo "Select your timezone: "
+TIMEZONE=$(find /usr/share/zoneinfo -type f | fzf --prompt="Select your timezone: ")
+ln -sf $TIMEZONE /etc/localtime
+hwclock --systohc
+
+## Setting Locale
+LOCALE=$(grep '^#[^ ]' /etc/locale.gen | fzf --prompt="Select your locale: " | sed 's/^#//')
+echo "$LOCALE" >> /etc/locale.gen
+locale-gen
+echo "LANG=$(echo ${LOCALE} | awk '{print $1}')"
+
 
 EOF
