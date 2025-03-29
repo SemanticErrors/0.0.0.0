@@ -35,6 +35,11 @@ mkswap /swapfile
 swapon /swapfile
 echo "/swapfile none swap defaults 0 0" >> /etc/fstab
 
+## Ensuring that fzf is installed 
+if [[ ! $(command -v fzf) ]]; then
+	pacman -Sy --noconfirm fzf
+fi
+
 ## Selecting Timezone
 echo "Select your timezone: "
 TIMEZONE=$(find /usr/share/zoneinfo -type f | fzf --prompt="Select your timezone: ")
@@ -45,7 +50,7 @@ hwclock --systohc
 LOCALE=$(grep '^#[^ ]' /etc/locale.gen | fzf --prompt="Select your locale: " | sed 's/^#//')
 echo "$LOCALE" >> /etc/locale.gen
 locale-gen
-echo "LANG=$(echo ${LOCALE} | awk '{print $1}')"
+echo "LANG=$(echo ${LOCALE} | awk '{print $1}')" > /etc/locale.conf
 
 
 EOF
