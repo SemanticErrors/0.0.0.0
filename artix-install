@@ -47,7 +47,7 @@ ln -sf $TIMEZONE /etc/localtime
 hwclock --systohc
 
 ## Setting Locale
-LOCALE=$(grep '^#[^ ]' /etc/locale.gen | fzf --prompt="Select your locale: " | sed 's/^#//')
+LOCALE=$(cat /etc/locale.gen | fzf --prompt="Select your locale: " | sed 's/^#//')
 echo "$LOCALE" >> /etc/locale.gen
 locale-gen
 echo "LANG=$(echo ${LOCALE} | awk '{print $1}')" > /etc/locale.conf
