@@ -7,6 +7,11 @@ MEM_SIZE_MB=$((MEM_SIZE_KB / 1024))
 SWAP_BS_COUNT=$((MEM_SIZE_MB * 2))
 TIMEZONE=""
 LOCALE=""
+HOSTNAME=""
+USERNAME=""
+DRIVE=""
+EFI_PKG="efibootmgr"
+GRUB_EFI="--target=x86_64-efi --efi-directory=/boot/ --bootloader-id=grub"
 
 if [[ $(ps -p 1 -o comm=) == "runit" ]]; then
     INIT_SYS="runit"
@@ -20,7 +25,7 @@ else
 fi
 
 INIT_SYS_PACKAGES="${INIT_SYS} elogind-${INIT_SYS}"
-basestrap /mnt ${INIT_SYS_PACKAGES} base base-devel linux linux-firmware vim fzf
+basestrap /mnt ${INIT_SYS_PACKAGES} base base-devel linux linux-firmware vim fzf grub networkmanager networkmanager-${INIT_SYS}
 
 fstabgen -U /mnt >> /mnt/etc/fstab
 
@@ -52,5 +57,34 @@ echo "$LOCALE" >> /etc/locale.gen
 locale-gen
 echo "LANG=$(echo ${LOCALE} | awk '{print $1}')" > /etc/locale.conf
 
+## hostname
+echo "hostname: "
+read HOSTNAME
+echo "$HOSTNAME" > /etc/hostname
+echo "127.0.0.1     localhost" >> /etc/hosts
+echo "::1           localhost" >> /etc/hosts
+echo "127.0.1.1     $HOSTNAME.localdomain $HOSTNAME" >> /etc/hosts
+
+## root password
+echo "root password: "
+passwd
+
+## Adding user
+echo "Enter username: "
+read USERNAME
+useradd -G wheel -m $USERNAME
+echo "Enter $USERNAME password: "
+passwd $USERNAME
+echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
+
+## grub
+echo "Enter your main drive for grub: "
+read DRIVE
+grub-install $DRIVE
+grub-mkconfig -o /boot/grub/grub.cfg
+
 
 EOF
+
+umount -R /mnt
+
