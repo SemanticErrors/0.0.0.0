@@ -2,6 +2,7 @@
 
 INIT_SYS=""
 INIT_SYS_PACKAGES=""
+ARTIX_CHROOT_SCRIPT="/root/0.0.0.0/scripts/artix-chroot.sh"
 
 if [[ $(ps -p 1 -o comm=) == "runit" ]]; then
     INIT_SYS="runit"
@@ -19,7 +20,8 @@ basestrap /mnt ${INIT_SYS_PACKAGES} base base-devel linux linux-firmware vim fzf
 
 fstabgen -U /mnt >> /mnt/etc/fstab
 
-artix-chroot /mnt ./scripts/artix-chroot.sh
+cp -a $ARTIX_CHROOT_SCRIPT /mnt/
+( artix-chroot /mnt ./artix-chroot.sh )|& tee logs/artix-chroot.log
 
 umount -R /mnt
 
