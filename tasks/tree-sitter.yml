@@ -1,0 +1,16 @@
+- name: Cloning tree-sitter
+  ansible.builtin.git:
+    repo: "{{ treesitter.repo }}"
+    dest: "{{ treesitter.dir }}"
+    force: yes
+
+- name: Building tree-sitter
+  make:
+    chdir: "{{ treesitter.dir }}"
+
+- name: Installing tree-sitter
+  become: true
+  command: make install clean
+  args:
+    chdir: "{{ treesitter.dir }}"
+

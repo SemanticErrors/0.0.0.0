@@ -1,0 +1,13 @@
+- hosts: localhost
+  become: yes
+  vars_files:
+    - vars/repos.yml
+
+  pre_tasks:
+  - name: Updating and Upgrading pacman packages...
+    pacman:
+      update_cache: yes
+  
+  tasks:
+    - include_tasks: tasks/tree-sitter.yml
+    - include_tasks: tasks/emacs.yml

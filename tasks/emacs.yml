@@ -1,0 +1,68 @@
+- name: Installing Emacs build dependencies
+  pacman:
+    name:
+      - base-devel
+      - libgccjit
+      - jansson
+      - make
+      - pkgconf
+      - git
+      - gnutls
+      - gtk3
+      - cairo
+      - harfbuzz
+      - libotf
+      - giflib
+      - libpng
+      - libwebp
+      - libjpeg-turbo
+      - libsm
+      - libxcb
+      - libxi
+      - xcb-util
+      - xorgproto
+      - libtiff
+      - libxml2
+      - libxpm
+    state: present
+    update_cache: yes
+  become: true
+
+- name: Cloning Emacs Source Code
+  ansible.builtin.git:
+    repo: "{{ emacs.repo }}"
+    dest: "{{ emacs.dir }}"
+    force: yes
+
+- name: Update library cache for tree-sitter
+  become: true
+  command: ldconfig /usr/local/lib
+
+- name: autogen.sh script
+  command: "./autogen.sh"
+  args:
+    chdir: "{{ emacs.dir }}"
+
+- name: Configuring Emacs build
+  environment:
+    PKG_CONFIG_PATH: /usr/local/lib/pkgconfig
+  command: |
+    ./configure \
+      --with-native-compilation \
+      --with-mailutils  \
+      --with-tree-sitter  \
+  args:
+    chdir: "{{ emacs.dir }}"
+
+- name: Compiling Emacs
+  become: true
+  make:
+    chdir: "{{ emacs.dir }}"
+    jobs: 4
+
+- name: Installing Emacs
+  become: true
+  command: make install clean
+  args:
+    chdir: "{{ emacs.dir }}"
+
