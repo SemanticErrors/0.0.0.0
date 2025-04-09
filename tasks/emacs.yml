@@ -3,7 +3,6 @@
     name:
       - base-devel
       - libgccjit
-      - jansson
       - make
       - pkgconf
       - git
