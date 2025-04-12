@@ -1,0 +1,12 @@
+- name: Cloning yay Source Code
+  ansible.builtin.git:
+    repo: "{{ yay.repo }}"
+    dest: "{{ yay.dir }}"
+    force: yes
+
+- name: Building and installing yay
+  become: true
+  command: makepkg -si --noconfirm
+  args:
+    chdir: "{{ yay.dir }}"
+

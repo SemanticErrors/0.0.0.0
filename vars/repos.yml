@@ -1,5 +1,9 @@
 src_dir: "{{ lookup('ansible.builtin.env', 'HOME') }}/.local/src/"
 
+yay:
+  repo: "https://aur.archlinux.org/yay.git"
+  dir: "{{ src_dir }}/yay"
+
 treesitter:
   repo: "https://github.com/tree-sitter/tree-sitter"
   dir: "{{ src_dir }}/tree-sitter"
