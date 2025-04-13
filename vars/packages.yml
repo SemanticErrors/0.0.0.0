@@ -10,9 +10,12 @@ artix_packages:
     - artix-archlinux-support
   fonts:
     - terminus-font
+    - notofonts
     - noto-fonts-emoji
-    - ttf-bigblueterminal-nerd
+    - otf-libertinus	
     - ttf-dejavu
+    - ttf-font-awesome	
+    - ttf-bigblueterminal-nerd
     - ttf-nerd-fonts-symbols
   xorg:
     - xorg-server
@@ -21,8 +24,12 @@ artix_packages:
     - xorg-xbacklight
     - xorg-xwininfo
     - xorg-xev
+    - xorg-xprop
     - xorg-font-util
     - xf86-video-intel
+    - libx11
+    - libxft
+    - libxinerama
     - arandr
   services:
     - networkmanager
@@ -62,6 +69,8 @@ artix_packages:
     - mpc
     - ncmpcpp
     - ffmpeg
+    - feh
+    - nsxiv
     - imagemagick
     - libva-utils
   utils:
@@ -77,6 +86,7 @@ artix_packages:
     - pass
     - xclip
     - maim
+    - moreutils
     - unclutter
     - redshift
     - clamav
@@ -84,7 +94,9 @@ artix_packages:
     - firetools
   desktop:
     - dunst
+    - libnotify
     - rofi
+    - kitty
     - xcolor
     - xautolock
     - polkit-gnome
@@ -119,6 +131,7 @@ artix_packages:
     - minetest
   extra:
     - texlive-full
+    - tesseract
     - tesseract-data-eng
     - flatpak
 
