@@ -1,0 +1,43 @@
+profiles:
+  core:
+    - base
+    - services
+    - storage
+    - media
+    - utils
+  development:
+    - base
+    - services
+    - storage
+    - media
+    - utils
+    - dev
+    - virtualization
+  gui:
+    - base
+    - services
+    - storage
+    - media
+    - utils
+    - xorg
+    - fonts
+    - apps
+    - desktop
+  tp:
+    - tp
+  full:
+    - base
+    - services
+    - storage
+    - media
+    - utils
+    - dev
+    - virtualization
+    - xorg
+    - fonts
+    - apps
+    - desktop
+    - games
+    - extra
+
+target_profile: "core"

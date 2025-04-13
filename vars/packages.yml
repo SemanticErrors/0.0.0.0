@@ -1,0 +1,130 @@
+artix_packages:
+  base:
+    - base
+    - base-devel
+    - make
+    - pkgconf
+    - alsa-utils
+    - man-db
+    - man-pages
+    - artix-archlinux-support
+  fonts:
+    - terminus-font
+    - noto-fonts-emoji
+    - ttf-bigblueterminal-nerd
+    - ttf-dejavu
+    - ttf-nerd-fonts-symbols
+  xorg:
+    - xorg-server
+    - xorg-xinit
+    - xorg-xsetroot
+    - xorg-xbacklight
+    - xorg-xwininfo
+    - xorg-xev
+    - xorg-font-util
+    - xf86-video-intel
+    - arandr
+  services:
+    - networkmanager
+    - networkmanager-runit
+    - tlp
+    - tlp-runit
+  storage:
+    - ntfs-3g
+    - dosfstools
+    - exfat-utils
+    - lf
+    - p7zip
+    - unzip
+    - android-file-transfer
+  tp:
+    - tp_smapi
+  virtualization:
+    - virtualbox
+    - virtualbox-guest-iso
+    - virtualbox-host-modules-artix
+  dev:
+    - python
+    - puthon2
+    - jdk-openjdk
+    - jre-open-jdk
+    - gcc
+    - make
+    - mariadb
+    - sqlite
+    - docker
+    - docker-runit
+    - android-tools
+    - wireshark-qt
+  media:
+    - vlc
+    - mpv
+    - mpc
+    - ncmpcpp
+    - ffmpeg
+    - imagemagick
+    - libva-utils
+  utils:
+    - wget
+    - htop
+    - tmux
+    - fzf
+    - bat
+    - yt-dlp
+    - ffmpeg
+    - ripgrep
+    - rsync
+    - pass
+    - xclip
+    - maim
+    - unclutter
+    - redshift
+    - clamav
+    - firejail
+    - firetools
+  desktop:
+    - dunst
+    - rofi
+    - xcolor
+    - xautolock
+    - polkit-gnome
+  apps:
+    - zathura
+    - zathura-pdf-mupdf
+    - mousepad
+    - firefox-developer-edition
+    - tor
+    - tor-browser
+    - libreoffice-fresh
+    - transmission-gtk
+    - xournalpp
+    - telegram-desktop
+    - minder
+    - httrack
+    - bleachbit
+    - keepassxc
+    - thunar
+    - gvfs
+    - gvfs-mtp
+    - thunar-archive-plugin
+    - pcmanfm
+    - gparted
+    - xarchiver
+    - file-roller
+    - obs-studio
+    - gimp
+    - mypaint
+  games:
+    - ppsspp
+    - minetest
+  extra:
+    - texlive-full
+    - tesseract-data-eng
+    - flatpak
+
+
+aur_packages:
+  - ungoogled-chromium-bin
+  - libva-intel-driver-g45-h264onlyoffice-bin
+  - pcsx2
+

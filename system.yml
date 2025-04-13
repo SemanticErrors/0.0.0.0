@@ -1,6 +1,8 @@
 - hosts: localhost
   vars_files:
     - vars/repos.yml
+    - vars/packages.yml
+    - vars/profiles.yml
 
   pre_tasks:
   - name: Updating and Upgrading pacman packages...
@@ -11,5 +13,6 @@
   
   tasks:
     - include_tasks: tasks/yay.yml
+    - include_tasks: tasks/core.yml
     - include_tasks: tasks/tree-sitter.yml
     - include_tasks: tasks/emacs.yml

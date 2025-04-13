@@ -1,0 +1,20 @@
+- name: Checking for profile existance
+  fail:
+    msg: "Profile '{{ target_profile }}' is invalid. Valid options: {{ profiles.keys() | list }}"
+  when: target_profile not in profiles
+
+- name: Getting profile packages
+  set_fact:
+    target_packages: "{{ profiles[target_profile] | map('extract', artix_packages) | flatten }}"
+
+- name: Profile Details
+  debug:
+    msg: |
+      Current Profile: {{ target_profile }}
+      Installing {{ target_packages  | length }}: {{ target_packages }}
+
+- name: Installing Profile Packages
+  become: true
+  pacman:
+    name: "{{ target_packages }}"
+    state: present 
