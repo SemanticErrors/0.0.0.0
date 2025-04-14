@@ -16,3 +16,4 @@
     - include_tasks: tasks/core.yml
     - include_tasks: tasks/tree-sitter.yml
     - include_tasks: tasks/emacs.yml
+    - include_tasks: tasks/suckless.yml

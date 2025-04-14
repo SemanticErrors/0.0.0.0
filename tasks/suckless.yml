@@ -1,0 +1,33 @@
+- name: Installing Suckless build dependencies
+  pacman:
+    name:
+      - git
+      - base-devel
+      - make
+      - libx11
+      - libxft
+      - libxinerama
+      - xorg-server
+      - xorg-xinit
+    state: present
+    update_cache: yes
+  become: true
+
+- name: Clone suckless repositories
+  ansible.builtin.git:
+    repo: "{{ item.value.repo }}"
+    dest: "{{ suckless_dir }}/{{ item.key }}"
+  loop: "{{ suckless | dict2items }}"
+
+- name: Build suckless programs
+  make:
+    chdir: "{{ suckless_dir }}/{{ item }}"
+  loop: "{{ suckless | keys | list }}"
+
+- name: Installing suckless programs
+  become: true
+  command: make install clean
+  args:
+    chdir: "{{ suckless.dir }}/{{ item }}"
+  loop: "{{ suckless | keys | list }}"
+

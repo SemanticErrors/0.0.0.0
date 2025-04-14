@@ -1,4 +1,5 @@
 src_dir: "{{ lookup('ansible.builtin.env', 'HOME') }}/.local/src/"
+suckless_dir: "{{ src_dir }}/suckless"
 
 yay:
   repo: "https://aur.archlinux.org/yay.git"
@@ -11,3 +12,13 @@ treesitter:
 emacs:
   repo: "https://git.savannah.gnu.org/git/emacs"
   dir: "{{ src_dir }}/emacs"
+
+suckless:
+  dwm:
+    repo: "https://git.suckless.org/dwm"
+  st:
+    repo: "https://git.suckless.org/st"
+  dmenu:
+    repo: "https://git.suckless.org/dmenu"
+  slstatus:
+    repo: "https://git.suckless.org/slstatus"
