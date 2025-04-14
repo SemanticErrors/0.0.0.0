@@ -21,13 +21,13 @@
 
 - name: Build suckless programs
   make:
-    chdir: "{{ suckless_dir }}/{{ item }}"
-  loop: "{{ suckless | keys | list }}"
+    chdir: "{{ suckless_dir }}/{{ item.key }}"
+  loop: "{{ suckless | dict2items }}"
 
 - name: Installing suckless programs
   become: true
   command: make install clean
   args:
-    chdir: "{{ suckless.dir }}/{{ item }}"
-  loop: "{{ suckless | keys | list }}"
+    chdir: "{{ suckless.dir }}/{{ item.key }}"
+  loop: "{{ suckless | dict2items }}"
 
