@@ -31,6 +31,7 @@
   ansible.builtin.git:
     repo: "{{ emacs.repo }}"
     dest: "{{ emacs.dir }}"
+    depth: 1
     force: yes
 
 - name: Update library cache for tree-sitter
