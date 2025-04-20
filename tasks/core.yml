@@ -1,3 +1,50 @@
+- name: Enabling some Pacman options
+  become: true
+  ansible.builtin.blockinfile:
+    path: /etc/pacman.conf
+    block: |
+
+      Color
+      VerbosePkgLists
+      ILoveCandy
+
+    marker: "# {mark} Pacman Tweaks"
+    insertafter: '^\[options\]'
+
+- name: Installing artix-archlinux-support
+  become: true
+  pacman:
+    name:
+      - artix-archlinux-support
+    state: present
+    update_cache: yes
+
+- name: Enabling omniverse and arch linux repos in /etc/pacman.conf
+  become: true
+  ansible.builtin.blockinfile:
+    path: /etc/pacman.conf
+    block: |
+
+      [omniverse]
+      Server = https://artix.sakamoto.pl/omniverse/$arch
+      Server = https://eu-mirror.artixlinux.org/omniverse/$arch
+      Server = https://omniverse.artixlinux.org/$arch
+
+      # Arch
+      [extra]
+      Include = /etc/pacman.d/mirrorlist-arch
+
+    create: yes
+
+- name: populate pacman keys
+  become: true
+  command: pacman-key --populate archlinux
+  
+- name: Updating pacman cache
+  become: true
+  pacman:
+    update_cache: yes
+
 - name: Checking for profile existance
   fail:
     msg: "Profile '{{ target_profile }}' is invalid. Valid options: {{ profiles.keys() | list }}"
