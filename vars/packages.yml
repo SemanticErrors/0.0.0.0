@@ -10,7 +10,7 @@ artix_packages:
     - artix-archlinux-support
   fonts:
     - terminus-font
-    - notofonts
+    - noto-fonts
     - noto-fonts-cjk
     - noto-fonts-emoji
     - otf-libertinus	
@@ -54,9 +54,7 @@ artix_packages:
     - virtualbox-host-modules-artix
   dev:
     - python
-    - puthon2
     - jdk-openjdk
-    - jre-open-jdk
     - gcc
     - make
     - mariadb
@@ -130,9 +128,7 @@ artix_packages:
     - mypaint
   games:
     - ppsspp
-    - minetest
   extra:
-    - texlive-full
     - tesseract
     - tesseract-data-eng
     - flatpak
