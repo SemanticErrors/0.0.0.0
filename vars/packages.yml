@@ -11,10 +11,12 @@ artix_packages:
   fonts:
     - terminus-font
     - notofonts
+    - noto-fonts-cjk
     - noto-fonts-emoji
     - otf-libertinus	
     - ttf-dejavu
     - ttf-font-awesome	
+    - ttf-jetbrains-mono
     - ttf-bigblueterminal-nerd
     - ttf-nerd-fonts-symbols
   xorg:
