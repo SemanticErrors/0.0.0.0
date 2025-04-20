@@ -10,7 +10,7 @@ treesitter:
   dir: "{{ src_dir }}/tree-sitter"
 
 emacs:
-  repo: "https://git.savannah.gnu.org/git/emacs"
+  repo: "https://git.savannah.gnu.org/git/emacs.git"
   dir: "{{ src_dir }}/emacs"
 
 suckless:
