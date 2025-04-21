@@ -1,0 +1,32 @@
+build-dependencies:
+  common:
+    - git
+    - base-devel
+    - pkgconf
+    - make
+  emacs:
+    - libgccjit
+    - gnutls
+    - gtk3
+    - cairo
+    - harfbuzz
+    - libotf
+    - giflib
+    - libpng
+    - libwebp
+    - libjpeg-turbo
+    - libsm
+    - libxcb
+    - libxi
+    - xcb-util
+    - xorgproto
+    - libtiff
+    - libxml2
+    - libxpm
+  suckless: 
+    - xorg-server
+    - xorg-xinit
+    - libx11
+    - libxft
+    - libxinerama
+

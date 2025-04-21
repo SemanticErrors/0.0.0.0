@@ -1,0 +1,6 @@
+- name: Installing common build dependencies
+  become: true
+  pacman:
+    name: "{{ build_dependencies.common }}"
+    state: present
+    update_cache: yes

@@ -1,14 +1,6 @@
 - name: Installing Suckless build dependencies
   pacman:
-    name:
-      - git
-      - base-devel
-      - make
-      - libx11
-      - libxft
-      - libxinerama
-      - xorg-server
-      - xorg-xinit
+    name: "{{ build_dependencies.suckless }}"
     state: present
     update_cache: yes
   become: true

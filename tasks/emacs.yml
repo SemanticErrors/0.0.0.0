@@ -1,28 +1,6 @@
 - name: Installing Emacs build dependencies
   pacman:
-    name:
-      - base-devel
-      - libgccjit
-      - make
-      - pkgconf
-      - git
-      - gnutls
-      - gtk3
-      - cairo
-      - harfbuzz
-      - libotf
-      - giflib
-      - libpng
-      - libwebp
-      - libjpeg-turbo
-      - libsm
-      - libxcb
-      - libxi
-      - xcb-util
-      - xorgproto
-      - libtiff
-      - libxml2
-      - libxpm
+    name: "{{ build_dependencies.emacs }}"
     state: present
     update_cache: yes
   become: true

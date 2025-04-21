@@ -3,6 +3,7 @@
     - vars/repos.yml
     - vars/packages.yml
     - vars/profiles.yml
+    - vars/build-dependencies.yml
 
   pre_tasks:
   - name: Updating and Upgrading pacman packages...
@@ -12,8 +13,9 @@
       upgrade: yes
   
   tasks:
-    - include_tasks: tasks/yay.yml
     - include_tasks: tasks/core.yml
+    - include_tasks: tasks/build-common.yml
+    - include_tasks: tasks/yay.yml
+    - include_tasks: tasks/suckless.yml
     - include_tasks: tasks/tree-sitter.yml
     - include_tasks: tasks/emacs.yml
-    - include_tasks: tasks/suckless.yml
