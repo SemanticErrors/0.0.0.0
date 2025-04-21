@@ -28,6 +28,6 @@
   become: true
   command: make install clean
   args:
-    chdir: "{{ suckless.dir }}/{{ item.key }}"
+    chdir: "{{ suckless_dir }}/{{ item.key }}"
   loop: "{{ suckless | dict2items }}"
 
