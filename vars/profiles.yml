@@ -40,4 +40,4 @@ profiles:
     - games
     - extra
 
-target_profile: "core"
+target_profile: "full"
