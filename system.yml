@@ -16,6 +16,7 @@
     - include_tasks: tasks/core.yml
     - include_tasks: tasks/build-common.yml
     - include_tasks: tasks/yay.yml
+    - include_tasks: tasks/aur-packages.yml
     - include_tasks: tasks/suckless.yml
     - include_tasks: tasks/tree-sitter.yml
     - include_tasks: tasks/emacs.yml

@@ -1,0 +1,8 @@
+- name: Installng AUR packages
+  become_user: 
+  kewlfft.aur.aur:
+    use: yay
+    name: "{{ aur_packages }}"
+  become: true
+  become_user: "{{ ansible_env.USER }}"
+

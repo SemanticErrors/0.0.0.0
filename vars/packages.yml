@@ -136,6 +136,7 @@ artix_packages:
 
 aur_packages:
   - ungoogled-chromium-bin
-  - libva-intel-driver-g45-h264onlyoffice-bin
+  - libva-intel-driver-g45-h264
+  - onlyoffice-bin
   - pcsx2
 
